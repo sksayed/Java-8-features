@@ -11,12 +11,20 @@ public class Shop {
         this.shopName = shopName;
     }
 
-    public double getPriceSync() {
-        return calculatePrice(this.shopName);
+    public String getShopName() {
+        return shopName;
     }
 
-    public Future<Double> getPriceAsync() {
-        return calculatePriceAsync(this.shopName);
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public double getPriceSync(String product) {
+        return calculatePrice(product);
+    }
+
+    public Future<Double> getPriceAsync(String product) {
+        return calculatePriceAsync2(product);
         //return 0.0;
     }
 
@@ -35,6 +43,11 @@ public class Shop {
         return futurePrice;
     }
 
+    private Future<Double> calculatePriceAsync2 (String shopName) {
+        return CompletableFuture.supplyAsync(()->{
+          return calculatePrice(shopName);
+        });
+    }
     private void delay() {
         try {
             //here we are making the thread sleeping for
