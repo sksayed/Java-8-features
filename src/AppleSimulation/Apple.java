@@ -38,12 +38,12 @@ public class Apple {
            return apple.getWeight() > 150 ;
     }
 
-    public  boolean filterAppleByLessThan150(Apple apple) {
+    public static boolean filterAppleByLessThan150(Apple apple) {
         return apple.getWeight() < 150 ;
     }
 
 
-    public static List<Apple> filterApple (List<Apple> inventoryApple , Predicate<Apple> predicate ) {
+    public static List<Apple> filterApple (List<Apple> inventoryApple , java.util.function.Predicate<Apple> predicate) {
         List<Apple> resultList = new ArrayList<>();
         for (Apple apple: inventoryApple){
             if(predicate.test(apple)){
@@ -62,6 +62,9 @@ public class Apple {
         }
         return resultList ;
     }
+
+    private static java.util.function.Predicate<Apple> moreThan150 = Apple::filterAppleBymoreThan150;
+    public static java.util.function.Predicate<Apple> moreThan150Lessthan600 = moreThan150.and(apple -> apple.getWeight() < 650);
 
     public static Apple getInstance () {
         return new Apple();
