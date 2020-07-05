@@ -29,9 +29,11 @@ public class TradesDataSource {
         resultList = (List<Transection>) IntStream.range(0, 10)
                 .mapToObj(a ->
                 {
-                    int val = random.nextInt(6);
-                    System.out.println(val);
-                    return new Transection(traderArray[val], yearArray[val], valueArray[val]);
+                    int traderVal = random.nextInt(6);
+                    int yearVal = random.nextInt(6);
+                    int valueVal = random.nextInt(6);
+                    System.out.println(String.format("%s %s %s",traderVal,yearVal,valueVal));
+                    return new Transection(traderArray[traderVal], yearArray[yearVal], valueArray[valueVal]);
                 }).collect(Collectors.toList());
         return resultList;
     }
