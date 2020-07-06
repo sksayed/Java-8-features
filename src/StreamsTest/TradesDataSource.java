@@ -14,9 +14,14 @@ public class TradesDataSource {
             new Trader("sayed", "chittagong"),
             new Trader("nayeem", "comilla"),
             new Trader("Zahid", "Dhaka"),
-            new Trader("sozib", "sirajgonj"),
+            new Trader("sozib", "Rajshahi"),
             new Trader("Sobuj", "Rajshahi"),
-            new Trader("Rifad", "Narayangonj")
+            new Trader("Rifad", "Narayangonj"),
+            new Trader("Kanta", "Rajshahi"),
+            new Trader("Rakib", "Tangail"),
+            new Trader("Anu", "Dhaka"),
+            new Trader("Bristi", "Noakhali"),
+            new Trader("Miraj", "Rangpur")
     };
 
     private Random random = new Random();
@@ -26,14 +31,14 @@ public class TradesDataSource {
 
     public List<Transection> getTransectionsArray() {
         List<Transection> resultList = new ArrayList<>();
-        resultList = (List<Transection>) IntStream.range(0, 10)
+        resultList = (List<Transection>) IntStream.range(0, traderArray.length-1)
                 .mapToObj(a ->
                 {
-                    int traderVal = random.nextInt(6);
+                    int traderVal = random.nextInt();
                     int yearVal = random.nextInt(6);
                     int valueVal = random.nextInt(6);
-                    System.out.println(String.format("%s %s %s",traderVal,yearVal,valueVal));
-                    return new Transection(traderArray[traderVal], yearArray[yearVal], valueArray[valueVal]);
+                   // System.out.println(String.format("%s %s %s",a,yearVal,valueVal));
+                    return new Transection(traderArray[a], yearArray[yearVal], valueArray[valueVal]);
                 }).collect(Collectors.toList());
         return resultList;
     }
