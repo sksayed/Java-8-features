@@ -1,8 +1,13 @@
 package StreamsTest;
 
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
+import java.util.function.UnaryOperator;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class MainClass {
     private TradesDataSource dataSource = new TradesDataSource();
@@ -14,13 +19,13 @@ public class MainClass {
 
         // ansOne();
         // ansTwo();
-        ansThree();
+        // ansThree();
         //ansFour();
         //ansFive();
         //ansSix();
         // ansSeven();
         // ansEight();
-
+        createAfibonachiSeriseOf20();
     }
 
     private static void allValues() {
@@ -135,6 +140,16 @@ public class MainClass {
                 .stream()
                 .min((t1, t2) -> t1.getValue() < t2.getValue() ? t1.getValue() : t2.getValue())
                 .ifPresent(System.out::println);
+    }
+
+    private static void createAfibonachiSeriseOf20() {
+        Stream.iterate(new int[]{0, 1}, new UnaryOperator<int[]>() {
+            @Override
+            public int[] apply(int[] ints) {
+                return new int[]{ints[1],(ints[0] + ints[1])};
+            }
+        }).limit(10).forEach(t -> System.out.println("("+t[0]+","+t[1]+")"));
+
     }
 
 }
